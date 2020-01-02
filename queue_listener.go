@@ -84,7 +84,7 @@ func (l *QueueListener) Addr() net.Addr {
 // NewQueueListener creates and initialize a new QueueListener.
 //
 // The backlog is the capacity of the queue like listen(2). When the queue is
-// filled with connection, Push is blocked until a connection is dequeued with
+// filled with connections, Push is blocked until a connection is dequeued with
 // Accept.
 func NewQueueListener(backlog uint) *QueueListener {
 	return &QueueListener{
