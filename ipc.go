@@ -98,8 +98,11 @@ func (c *Conn) SendFile(f *os.File, msg []byte) error {
 	return c.fileGW.send(c.conn, f, msg)
 }
 
-// ReceiveFile receives a file handle from the peer. The second return value
-// indicate trailing data exists; call ReceiveData to receive it.
+// ReceiveFile receives a file handle from the peer.
+//
+// The second return value indicate trailing data exists; call ReceiveData to
+// receive it if it is true.
+//
 // See also SendFile.
 func (c *Conn) ReceiveFile() (*os.File, bool, error) {
 	return c.fileGW.receive(c.conn)
@@ -114,7 +117,7 @@ func (c *Conn) ReceiveFile() (*os.File, bool, error) {
 //
 // msg is an additional information. Specify nil if nothing.
 //
-// See also ReceiveFile.
+// See also ReceiveTCPConn.
 func (c *Conn) SendTCPConn(conn *net.TCPConn, peeked, msg []byte) error {
 	buf := [1]byte{byte(TCPConnCommand)}
 	if _, err := c.conn.Write(buf[:]); err != nil {
