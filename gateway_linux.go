@@ -143,8 +143,5 @@ func waitIOEvent(mode, fd int, timeout *unix.Timeval) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	if n == 0 {
-		return false, nil
-	}
-	return true, nil
+	return n == 1, nil
 }
