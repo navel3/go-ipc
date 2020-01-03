@@ -12,16 +12,6 @@ type socketGateway struct {
 	gateway
 }
 
-func (gw *socketGateway) prepareAcceptor(conn net.Conn) error {
-	// do nothing
-	return nil
-}
-
-func (gw *socketGateway) prepareDialer(conn net.Conn) error {
-	// do nothing
-	return nil
-}
-
 func (gw *socketGateway) send(conn net.Conn, sock *net.TCPConn, peeked, msg []byte) (err error) {
 	rawSock, err := sock.SyscallConn()
 	if err != nil {
